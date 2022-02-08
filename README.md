@@ -23,7 +23,7 @@ O app possui 3 inputs sendo eles: Decrição, prioridade e data.
 + Agendar tarefas.
 + Verificar se a tarefa está vencida.
 + Remover a tarefa
-+ Para apresentação das tarefas foi criado um componete com o estilo de um Card.
++ Para apresentação das tarefas foi criado um componente com o estilo de um Card.
 + Adicionado um scrollView para caso os cards passarem do tamanho da tela.
 
 ## Tecnologias utilizadas:
