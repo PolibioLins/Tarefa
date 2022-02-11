@@ -4,8 +4,11 @@ import {View, Text, TouchableOpacity, StyleSheet, Image} from 'react-native';
 export default class CardApp extends Component {
 
   getEstilo() {
+    
+    const hoje = Date.now();
+    const data = Date.parse(this.props.dataDeTermino.split('/').reverse().join('/'));
 
-    if (this.props.status === '1') {
+    if (data < hoje) {
       return {
         backgroundColor: 'red',
         borderColor: 'black',

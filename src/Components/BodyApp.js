@@ -21,7 +21,6 @@ export default class BodyApp extends Component {
       descricao: '',
       dataDeTermino: '',
       prioridade: '',
-      status: '',
       lista: [],
     };
     this.Listar();
@@ -34,8 +33,9 @@ export default class BodyApp extends Component {
     });
   };
 
-  Cadastrar = (descricao, dataDeTermino, prioridade, status) => {
-    const novaTarefa = new Tarefa(descricao, dataDeTermino, prioridade, status);
+ 
+  Cadastrar = (descricao, dataDeTermino, prioridade) => {
+    const novaTarefa = new Tarefa(descricao, dataDeTermino, prioridade);
     const banco = new TarefaDatabase();
     banco.Inserir(novaTarefa);
     this.Listar();
@@ -51,21 +51,7 @@ export default class BodyApp extends Component {
     this.setState({
       dataDeTermino: valor,
     });
-  this.Registrar(valor);
-  };
-
-  Registrar = (dataDeTermino) => {
-    const hoje = Date.now();
-    const data = Date.parse(dataDeTermino.split('/').reverse().join('/'));
-    if (data < hoje) {
-      this.setState({
-        status: '1'
-      });
-    } else {
-      this.setState({
-        status: '0'
-      });
-    }
+ 
   };
 
   render() {
@@ -113,7 +99,7 @@ export default class BodyApp extends Component {
                 this.state.descricao,
                 this.state.dataDeTermino,
                 this.state.prioridade,
-                this.state.status,
+                
               )
             }
             style={styl.button}>
@@ -137,7 +123,6 @@ export default class BodyApp extends Component {
                   descricao={item.descricao}
                   dataDeTermino={item.dataDeTermino}
                   prioridade={item.prioridade}
-                  status={item.status}
                   remover={this.Remover}
                  
                 />

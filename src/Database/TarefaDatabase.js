@@ -41,7 +41,7 @@ export default class Database {
                     );
                     db.transaction(tx => {
                       tx.executeSql(
-                        'CREATE TABLE IF NOT EXISTS Item (id INTEGER PRIMARY KEY AUTOINCREMENT, descricao varchar(100), dataDeTermino varchar(11), prioridade varchar(30),status varchar(30))', // Mudar o nome da tabela e os elementos colocando os tipos "varchar e etc"
+                        'CREATE TABLE IF NOT EXISTS Item (id INTEGER PRIMARY KEY AUTOINCREMENT, descricao varchar(100), dataDeTermino varchar(11), prioridade varchar(30))', // Mudar o nome da tabela e os elementos colocando os tipos "varchar e etc"
                       );
                     })
                       .then(() => {
@@ -92,8 +92,8 @@ export default class Database {
                 for (let i = 0; i < len; i++) {
                   let row = results.rows.item(i);
                   // console.log('Prod ID: ${row.id}, Prod Nome: ${row.nome}'); --> Ajustar se quiser
-                  const {id, descricao, dataDeTermino, prioridade, status} = row; // Colocar os elementos
-                  lista.push({id, descricao, dataDeTermino, prioridade, status});
+                  const {id, descricao, dataDeTermino, prioridade} = row; // Colocar os elementos
+                  lista.push({id, descricao, dataDeTermino, prioridade});
                 }
                 console.log(lista);
                 resolve(lista);
@@ -119,12 +119,12 @@ export default class Database {
           .then(db => {
             db.transaction(tx => {
               //Query SQL para inserir um novo produto
-              tx.executeSql('INSERT INTO Item (descricao,dataDeTermino,prioridade,status) VALUES (?, ?, ?, ?)', [
+              tx.executeSql('INSERT INTO Item (descricao,dataDeTermino,prioridade) VALUES (?, ?, ?)', [
                 // Cada interregacao pede um parametro --> Id é autoincrentado, nao conta
                 item.descricao,
                 item.dataDeTermino,
                 item.prioridade,
-                item.status,
+               
               ]).then(([tx, results]) => {
                 resolve(results);
               });
